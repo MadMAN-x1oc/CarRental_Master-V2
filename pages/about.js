@@ -49,7 +49,7 @@ function about() {
                       <div className="h-[100px] w-[100px] flex items-center justify-center md:h-[150px] md:w-[150px] shadow-xl bg-white rounded-full  align-middle border-none absolute -top-12 ">
                         <img
                           alt="..."
-                          src="/logo.png"
+                          src="https://shariandabre.github.io/CarRental_Master-V2/logo.png"
                           className="rounded-full w-full h-full"
                         />
                       </div>
