@@ -11,7 +11,7 @@ function about() {
             className="absolute top-0 w-full h-full bg-center bg-cover"
             style={{
               backgroundImage:
-                "url('https://images.pexels.com/photos/17347155/pexels-photo-17347155/free-photo-of-tuned-volkswagen-jetta-on-road-in-forest.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+                "url('https://images.pexels.com/photos/1552224/pexels-photo-1552224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
             }}
           >
             <span
