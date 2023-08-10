@@ -26,8 +26,8 @@ export const carList = [
       service: 'Maruti Ertiga',
       seaters: '6',
       index:2,
-      "8|80":2800,
-      extraHr:180,
+      "8|80":2600,
+      extraHr:160,
       extraKm:16,
       airport:1800
     },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
 import geocoding from "@mapbox/mapbox-sdk/services/geocoding";
 import { MdDateRange } from "react-icons/md";
-import { toast, ToastContainer } from "react-toastify";
+import {  MdLocationOn } from "react-icons/md";
 import { BiTimeFive } from "react-icons/bi";
 function Search({
   handleclick,
@@ -28,7 +28,7 @@ function Search({
 
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
   const [dropoffSuggestions, setDropoffSuggestions] = useState([]);
-
+  const [currentLocation, setCurrentLocation] = useState("");
   const fetchSuggestions = async (input, setter) => {
     try {
       const response = await geocodingService
@@ -69,6 +69,44 @@ function Search({
     const day = String(currentDate.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
+  const getUserCurrentLocation = () => {
+    const confirmAccess = window.confirm(
+      "This website wants to access your current location. Allow access?"
+    );
+  
+    if (confirmAccess) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            // Use Mapbox's reverse geocoding to get the location name from latitude and longitude
+            geocodingService
+              .reverseGeocode({
+                query: [longitude, latitude],
+                limit: 1,
+              })
+              .send()
+              .then((response) => {
+                const locationName =
+                  response.body.features[0].place_name || "Unknown Location";
+                setCurrentLocation(locationName);
+                setPickup(locationName);
+              })
+              .catch((error) => {
+                console.log("Error fetching current location:", error);
+              });
+          },
+          (error) => {
+            console.log("Error getting current location:", error);
+          }
+        );
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+    } else {
+      console.log("User denied access to current location.");
+    }
+  };
 
   return (
     <Wapper>
@@ -86,14 +124,23 @@ function Search({
       <InputContainer onSubmit={handleconfirm}>
         {formType == "OutStation" && (
           <InputBoxes>
+          <div className="flex gap-2">
             <Input
               placeholder="Enter pickup location"
+              className="flex-1"
               value={pickup}
               autoComplete="address-line1"
               list="pickup-suggestions"
               onChange={(e) => setPickup(e.target.value)}
               required
             />
+             <button
+                type="button"
+                onClick={getUserCurrentLocation}
+                className="bg-blue-500 text-lg text-white px-4 py-2 rounded-md border border-gray-400"
+              >
+               < MdLocationOn/>
+              </button></div>
             <datalist id="pickup-suggestions">
               {pickupSuggestions.map((suggestion, index) => (
                 <option key={index} value={suggestion} />
@@ -108,6 +155,7 @@ function Search({
               onChange={(e) => setDropoff(e.target.value)}
               required
             />
+           
             <datalist id="dropoff-suggestions">
               {dropoffSuggestions.map((suggestion, index) => (
                 <option key={index} value={suggestion} />
@@ -207,14 +255,23 @@ function Search({
         )}
         {formType == "Local Transport" && (
           <InputBoxes>
+          <div className="flex gap-2">
             <Input
               placeholder="Enter pickup location"
+              className="flex-1"
               value={pickup}
               autoComplete="address-line1"
               list="pickup-suggestions"
               onChange={(e) => setPickup(e.target.value)}
               required
             />
+             <button
+                type="button"
+                onClick={getUserCurrentLocation}
+                className="bg-blue-500 text-lg text-white px-4 py-2 rounded-md border border-gray-400"
+              >
+               < MdLocationOn/>
+              </button></div>
             <datalist id="pickup-suggestions">
               {pickupSuggestions.map((suggestion, index) => (
                 <option key={index} value={suggestion} />
@@ -313,14 +370,23 @@ function Search({
             </div>
             {tripType === "Drop at Airport" && (
               <>
-                <Input
-                  placeholder="Enter location"
-                  value={pickup}
-                  autoComplete="address-line1"
-                  list="pickup-suggestions"
-                  onChange={(e) => setPickup(e.target.value)}
-                  required
-                />
+          <div className="flex gap-2">
+            <Input
+              placeholder="Enter pickup location"
+              className="flex-1"
+              value={pickup}
+              autoComplete="address-line1"
+              list="pickup-suggestions"
+              onChange={(e) => setPickup(e.target.value)}
+              required
+            />
+             <button
+                type="button"
+                onClick={getUserCurrentLocation}
+                className="bg-blue-500 text-lg text-white px-4 py-2 rounded-md border border-gray-400"
+              >
+               < MdLocationOn/>
+              </button></div>
                 <datalist id="pickup-suggestions">
                   {pickupSuggestions.map((suggestion, index) => (
                     <option key={index} value={suggestion} />
