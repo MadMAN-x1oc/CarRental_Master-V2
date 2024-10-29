@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
-import { carList } from "../data/carList";
+import { getCarList } from "../data/carList";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -24,6 +24,7 @@ const Booking = ({
   const [phone, setPhone] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
+  const [carList, setCarList] = useState([]);
   const [bookingDone, setBookingDone] = useState(false);
   const indianFormattedPrice = Number(Price).toLocaleString("en-IN", {
     style: "currency",
@@ -77,6 +78,11 @@ const Booking = ({
     setBookingDone(true);
   };
   useEffect(() => {
+    const fetchCars = async () => {
+  
+      setCarList(await getCarList())
+    }
+    fetchCars()
     if (bookingDone) {
       setTimeout(() => {
         window.location.reload(); // Refresh the browser after a certain duration

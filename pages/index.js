@@ -8,9 +8,13 @@ import { BsFillTelephoneFill, BsFacebook, BsLinkedin } from "react-icons/bs";
 import { toast, ToastContainer } from 'react-toastify';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import react from "react"
+import { db } from "../firebase/config";
 
 export default function Home() {
-  
+ 
+
   const [confirm, setconfirm] = useState(false);
   const [search, setSearch] = useState(false);
   const [formType, setFormType] = useState("");

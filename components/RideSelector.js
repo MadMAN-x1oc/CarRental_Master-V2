@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
-import { carList } from "../data/carList";
+import { getCarList } from "../data/carList";
+
 const RideSelector = ({
   pickupCoordinates,
   dropoffCoordinates,
@@ -17,8 +18,13 @@ const RideSelector = ({
   setDistance,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
-
+const [carList, setCarList] = useState([]);
   useEffect(() => {
+    const fetchCars = async () => {
+  
+      setCarList(await getCarList())
+    }
+    fetchCars()
     if (
       pickupCoordinates[0] !== 0 &&
       pickupCoordinates[1] !== 0 &&

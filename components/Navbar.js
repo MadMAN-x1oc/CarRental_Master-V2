@@ -4,7 +4,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail, MdLocationOn} from "react-icons/md";
 import {
   AiFillHome,
-} from "react-icons/ai";
+} from "react-icons/ai"; 
 function Navbar() {
 
   const [Drop,setDrop]=useState(false)
@@ -24,13 +24,13 @@ CAR RENTAL
       <Link href="tel:9920 00 9920">
         <div className="hidden md:flex gap-2 items-center md:pr-2 border-0 md:border-r-2 cursor-pointer text-base text-[#0080FF]  border-gray-300">
           <BsFillTelephoneFill />
-          <span>80109 55252</span>
+          <span>91758 88655</span>
         </div>
       </Link>
 
       <div className=" hidden md:flex gap-2 items-center md:pr-2 border-0 md:border-r-2  border-gray-300">
         <MdEmail />
-        <span>carrental@gamil.com</span>
+        <span>narouslopes@gmail.com</span>
       </div>
       <div className="hidden md:flex gap-2 items-center ">
         <MdLocationOn />

@@ -1,46 +1,28 @@
-import react from "react"
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase/config";
 
-export const carList = [
-    {
-      imgUrl: 'innova',
-      service: 'Toyota Crysta',
-      seaters: '6',
-      index:0,
-      "8|80":3200,
-      extraHr:220,
-      extraKm:22,
-      airport:2200,
-    },
-    {
-      imgUrl: 'innova1',
-      service: 'Toyota Innova',
-      seaters: '6',
-      index:1,
-      "8|80":2800,
-      extraHr:180,
-      extraKm:18,
-      airport:1800
-    },
-    {
-      imgUrl: 'ertiga',
-      service: 'Maruti Ertiga',
-      seaters: '6',
-      index:2,
-      "8|80":2600,
-      extraHr:160,
-      extraKm:16,
-      airport:1800
-    },
-    {
-      imgUrl: 'dzire',
-      service: 'Maruti Dzire',
-      seaters: '4',
-      index:3,
-      "8|80":2100,
-      extraHr:140,
-      extraKm:14,
-      airport:1400
-    },
 
-  ]
-  
+export const getCarList = async () => {
+  try {
+    const carsRef = collection(db, 'cars');
+    const querySnapshot = await getDocs(carsRef);
+    const cars = querySnapshot.docs.map((doc) => doc.data());
+
+    // Format the cars to match the carList structure
+    const carList = cars.map((car, index) => ({
+      imgUrl: car.imgUrl,
+      service: car.service,
+      seaters: car.seaters,
+      index: index,
+      "8|80": car["8|80"],
+      extraHr: car.extraHr,
+      extraKm: car.extraKm,
+      airport: car.airport
+    }));
+
+    return carList;
+  } catch (error) {
+    console.error('Error fetching car data:', error);
+    return [];
+  }
+};

@@ -112,8 +112,6 @@ const Map = ({ pickupCoordinates, dropoffCoordinates, Package, formType }) => {
       }
       else{
         marker.addTo(map);
-        marker.getPopup().addTo(map);
-        marker.openPopup();
       }
     };
 
