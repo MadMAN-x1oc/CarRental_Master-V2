@@ -5,10 +5,10 @@ function Footer() {
     <footer class="text-gray-600 body-font border-t">
   <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-    <img src="https://shariandabre.github.io/CarRental_Master-V2/logo.png" className='w-12 h-11'/>
-      <span class="ml-3 text-xl">Car Rental</span>
+    <img src="Pogo.png" className='w-12 h-11'/>
+      <span class="ml-3 text-xl">Rent Ease</span>
     </a>
-    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Car Rental
+    <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2024 Rent Ease
     </p>
     <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
       <a class="text-gray-500">

@@ -8,12 +8,12 @@ import { BsFillTelephoneFill, BsFacebook, BsLinkedin } from "react-icons/bs";
 import { toast, ToastContainer } from 'react-toastify';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { UserButton } from "@clerk/nextjs";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import react from "react"
 import { db } from "../firebase/config";
 
 export default function Home() {
- 
 
   const [confirm, setconfirm] = useState(false);
   const [search, setSearch] = useState(false);
@@ -113,35 +113,19 @@ export default function Home() {
     <Wrapper className={` ${search && !confirm ? "p-2 h-screen md:flex-row gap-2" : "p-0 h-auto"}`}>
       {!confirm && (
         <>
-          <div
-            id="scroll"
-            className={`flex flex-col flex-1 gap-8  ${
-              search ? "border rounded-xl" : ""
-            } order-1 md:-order-1 border-gray-600 `}
-          >
+          <div id="scroll" className={`flex flex-col flex-1 gap-8  ${search ? "border rounded-xl" : ""} order-1 md:-order-1 border-gray-600 `}>
             {!search && (
               <>
                 <div className="h-screen  flex flex-col">
                   <Navbar/>
                   <div className="h-full w-full flex-1 flex items-center justify-center p-2 md:p-4 ">
                     <div className="flex h-full bg rounded-lg w-full flex-col items-center justify-center md:flex-row gap-4 sm:gap-4 sm:p-4 p-2 ">
-                      <div
-                        id="homePage"
-                        className="order-1 md:-order-1 flex flex-col gap-6 justify-center items-center w-full md:w-3/6"
-                      >
+                      <div id="homePage" className="order-1 md:-order-1 flex flex-col gap-6 justify-center items-center w-full md:w-3/6">
                         <Header>
-                          <UberLogo className="text-center">
-                            Rent. Explore. Thrive.
-                          </UberLogo>
+                          <UberLogo className="text-center">Rent. Explore. Thrive.</UberLogo>
                         </Header>
                         <Header className="flex flex-col text-2xl font-semibold">
-                          <h2 className="text-gray-100 text-center">
-                            press the button below to start booking your dream
-                            ride today
-                            <span className="text-white text-start">
-                              . Let the journey begin!
-                            </span>
-                          </h2>
+                          <h2 className="text-gray-100 text-center">press the button below to start booking your dream ride today<span className="text-white text-start">. Let the journey begin!</span></h2>
                         </Header>
                         <ActionButton1
                           onClick={openPopup}
@@ -153,16 +137,10 @@ export default function Home() {
                           <div className="go flex-1 h-full"></div>
                         </ActionButton1>
                       </div>
-                      {/* <div
-                        id="herocontent"
-                        className="flex-1 md:flex-[2_2_0%] flex items-center rounded-xl flex-col gap-4"
-                      >
-                        <div className="bg w-full h-full rounded-xl"></div>
-                      </div> */}
                     </div>
                   </div>
                 </div>
-                  <Footer/>
+                <Footer/>
               </>
             )}
             {search && (
@@ -217,10 +195,7 @@ export default function Home() {
           </div>
           <PopupContent>
             <CloseButton onClick={closePopup}>
-              <img
-                className="h-4"
-                src="https://img.icons8.com/?size=512&id=46&format=png"
-              />
+              <img className="h-4" src="https://img.icons8.com/?size=512&id=46&format=png" />
             </CloseButton>
             <ActionButtons className="items-center">
               <ActionButton
@@ -256,7 +231,6 @@ export default function Home() {
                 <ActionButtonImg src="https://img.icons8.com/?size=512&id=akvTP3kbVnLv&format=png" />
                 <Text>Airport(Pickup / dropoff)</Text>
               </ActionButton>
-              {/* <img onClick={()=>{location.href="#contactInfo"}} src="https://img.icons8.com/?size=512&id=41189&format=png" className="h-20 w-20 cursor-pointer my-2"/> */}
             </ActionButtons>
           </PopupContent>
         </Popup>

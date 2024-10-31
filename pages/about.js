@@ -49,8 +49,8 @@ function about() {
                       <div className="h-[100px] w-[100px] flex items-center justify-center md:h-[150px] md:w-[150px] shadow-xl bg-white rounded-full  align-middle border-none absolute -top-12 ">
                         <img
                           alt="..."
-                          src="https://shariandabre.github.io/CarRental_Master-V2/logo.png"
-                          className="rounded-full w-full h-full"
+                          src="Pogo.png"
+                          className="w-24 h-auto rounded"
                         />
                       </div>
                     </div>
@@ -92,7 +92,7 @@ function about() {
                 </section>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800">
-                    Car Rental
+                    Rent Ease
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>
